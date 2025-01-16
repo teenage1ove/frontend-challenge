@@ -17,10 +17,6 @@ const router = createBrowserRouter(
 					element: <Cats />,
 				},
 				{
-					path: '/frontend-challenge/',
-					element: <Cats />, // для ghpages
-				},
-				{
 					path: '/favorites',
 					element: <FavoritesCats />,
 				},
