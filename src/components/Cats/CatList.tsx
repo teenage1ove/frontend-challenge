@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll'
 import useStore from '../../store/store'
 import { ICat } from '../../store/store.interfaces'
 import { CatItem } from './CatItem'
@@ -19,35 +20,18 @@ export function CatList({ isFavoriteList }: ICatListProps) {
 	const loadingMore = useStore(state => state.loadingMore)
 
 	const [hoveredItemId, setHoveredItemId] = useState<string | null>(null)
+	
+	useInfiniteScroll({
+		loadingMore,
+		fetchMoreCats,
+		catsLength: cats.length,
+		loading,
+	})
 
 	useEffect(() => {
 		getCats()
 		getFavorites()
 	}, [getCats, getFavorites])
-
-	const handleScroll = useCallback(() => {
-		if (
-			window.innerHeight + document.documentElement.scrollTop ===
-				document.documentElement.offsetHeight &&
-			!loadingMore
-		) {
-			fetchMoreCats()
-		}
-	}, [fetchMoreCats, loadingMore])
-
-	useEffect(() => {
-		if (cats.length < 15) {
-			fetchMoreCats()
-		}
-		console.log('здесь')
-	}, [cats, fetchMoreCats, loading])
-
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll)
-		return () => {
-			window.removeEventListener('scroll', handleScroll)
-		}
-	}, [handleScroll])
 
 	const handleMouseEnter = (id: string) => {
 		setHoveredItemId(id)
@@ -71,26 +55,29 @@ export function CatList({ isFavoriteList }: ICatListProps) {
 	return (
 		<div className='cats'>
 			<div className='cats__list'>
-			    {loading ? (
-    				<div className='cats__loading'>Loading...</div>
-    			) : (
-    				catsToRender.map(cat => (
-    					<CatItem
-    						key={cat.id}
-    						cat={cat}
-    						handleMouseEnter={handleMouseEnter}
-    						handleMouseLeave={handleMouseLeave}
-    						handleToggleFavorite={handleToggleFavorite}
-    						isHoveredItem={hoveredItemId}
-    						favorites={favorites}
-    					/>
-    				))
-    			)}
+				{loading ? (
+					<div className='cats__loading'>Loading...</div>
+				) : (
+					catsToRender.map(cat => (
+						<CatItem
+							key={cat.id}
+							cat={cat}
+							handleMouseEnter={handleMouseEnter}
+							handleMouseLeave={handleMouseLeave}
+							handleToggleFavorite={handleToggleFavorite}
+							isHoveredItem={hoveredItemId}
+							favorites={favorites}
+						/>
+					))
+				)}
 			</div>
 
 			{!isFavoriteList
-				? loadingMore && !loading && (
-						<div className='cats__loading-more'>... загружаем еще котиков ...</div>
+				? loadingMore &&
+				  !loading && (
+						<div className='cats__loading-more'>
+							... загружаем еще котиков ...
+						</div>
 				  )
 				: ''}
 		</div>
