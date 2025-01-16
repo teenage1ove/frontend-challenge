@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   // base: '/frontend-challenge/',
   plugins: [react()],
+  define: {
+    'VITE_API_KEY': JSON.stringify(process.env.VITE_API_KEY),
+  }
 })
