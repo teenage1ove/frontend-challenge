@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Cats } from './Pages/Cats/Cats.tsx'
 import { FavoritesCats } from './Pages/FavoritesCats/FavoritesCats.tsx'
 import { NotFound } from './Pages/NotFound/NotFound.tsx'
 import { Layout } from './components/Layout/Layout.tsx'
-import { Cats } from './Pages/Cats/Cats.tsx'
 import './index.scss'
 
 const router = createBrowserRouter(
@@ -16,7 +16,10 @@ const router = createBrowserRouter(
 					path: '/',
 					element: <Cats />,
 				},
-
+				{
+					path: '/frontend-challenge/',
+					element: <Cats />, // для ghpages
+				},
 				{
 					path: '/favorites',
 					element: <FavoritesCats />,

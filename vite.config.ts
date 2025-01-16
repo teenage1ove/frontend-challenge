@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/', // для ghpages
+  base: '/frontend-challenge/', // для ghpages
   plugins: [react()],
   define: {
     'VITE_API_KEY': JSON.stringify(process.env.VITE_API_KEY),
