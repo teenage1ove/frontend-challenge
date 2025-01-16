@@ -10,7 +10,9 @@ export function Layout() {
 				<Link
 					to={'/'}
 					className={`header__link ${
-						location.pathname === '/' && 'header__link_active'
+						location.pathname === '/' ||
+						(location.pathname === '/frontend-challenge/' &&
+							'header__link_active')
 					}`}
 				>
 					Все котики
