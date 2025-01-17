@@ -29,7 +29,7 @@ const router = createBrowserRouter(
 	],
 	{
 		future: { v7_relativeSplatPath: true },
-		basename: import.meta.env.VITE_BASE
+		basename: '/frontend-challenge/',
 	}
 )
 
