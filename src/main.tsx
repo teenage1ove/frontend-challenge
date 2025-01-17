@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Cats } from './Pages/Cats/Cats.tsx'
 import { FavoritesCats } from './Pages/FavoritesCats/FavoritesCats.tsx'
 import { NotFound } from './Pages/NotFound/NotFound.tsx'
 import { Layout } from './components/Layout/Layout.tsx'
-import { Cats } from './Pages/Cats/Cats.tsx'
 import './index.scss'
 
 const router = createBrowserRouter(
@@ -16,7 +16,6 @@ const router = createBrowserRouter(
 					path: '/',
 					element: <Cats />,
 				},
-
 				{
 					path: '/favorites',
 					element: <FavoritesCats />,
@@ -30,6 +29,7 @@ const router = createBrowserRouter(
 	],
 	{
 		future: { v7_relativeSplatPath: true },
+		basename: '/frontend-challenge/',
 	}
 )
 
