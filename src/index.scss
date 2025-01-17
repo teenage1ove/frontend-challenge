@@ -6,7 +6,6 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-
 .header {
 	padding: 0 62px;
 	background-color: #2196f3;
@@ -42,6 +41,7 @@ body {
 			align-items: center;
 			justify-content: center;
 			margin: 48px 0;
+			place-items: center;
 		}
 
 		&__loading {
@@ -52,7 +52,6 @@ body {
 				margin-top: 40px;
 				font-size: 14px;
 				text-align: center;
-				
 			}
 		}
 
